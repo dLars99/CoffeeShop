@@ -1,5 +1,6 @@
 const url = "https://localhost:5001/api/beanvariety/";
 
+// Show beans button
 const button = document.querySelector("#run-button");
 button.addEventListener("click", () => {
     getAllBeanVarieties()
@@ -9,6 +10,7 @@ button.addEventListener("click", () => {
         })
 })
 
+// New bean form submission
 const newBean = document.getElementById("submitNewBean")
 newBean.addEventListener("click", (evt) => {
     evt.preventDefault()
@@ -26,6 +28,19 @@ newBean.addEventListener("click", (evt) => {
 
 })
 
+// Render the list of beans
+const renderBeanHTML = (beans) => {
+    htmlToRender = `<h2>Coffee Bean Varieties</h2>
+                    <ul>`
+    beans.forEach(bean => {
+        if (!bean.notes) bean.notes = "No additional notes"
+        htmlToRender += `<li><strong>${bean.name}, ${bean.region}:</strong> ${bean.notes}</li>`
+    })
+    htmlToRender += "</ul>"
+    return htmlToRender
+}
+
+// Database functions
 function getAllBeanVarieties() {
     return fetch(url).then(resp => resp.json());
 }
@@ -39,15 +54,4 @@ const saveNewBean = (bean) => {
         body: JSON.stringify(bean)
     }).then(resp => resp.json());
 
-}
-
-const renderBeanHTML = (beans) => {
-    htmlToRender = `<h2>Coffee Bean Varieties</h2>
-                    <ul>`
-    beans.forEach(bean => {
-        if (!bean.notes) bean.notes = "No additional notes"
-        htmlToRender += `<li><strong>${bean.name}, ${bean.region}:</strong> ${bean.notes}</li>`
-    })
-    htmlToRender += "</ul>"
-    return htmlToRender
 }
