@@ -6,9 +6,27 @@
 </head>
 
 <body>
-    <button id="run-button">Run It!</button>
+    <button id="run-button">Show me the beans!</button>
     <section id="beans">
         <!-- Beans go here -->
+    </section>
+    <section>
+        <form id="newBean">
+            <h3>Enter a New Bean</h3>
+            <fieldset>
+                <label name="name">Name</label>
+                <input type="text" name="name" id="beanName">
+            </fieldset>
+            <fieldset>
+                <label name="region">Region</label>
+                <input type="text" name="region" id="beanRegion">
+            </fieldset>
+            <fieldset>
+                <label name="notes">Notes</label>
+                <textarea id="beanNotes" name="notes"></textarea>
+            </fieldset>
+            <button type="button" id="submitNewBean">Save New Bean</button>
+        </form>
     </section>
     <script src="main.js"></script>
 </body>
